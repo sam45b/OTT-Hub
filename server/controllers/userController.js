@@ -1,12 +1,16 @@
-// In your backend (Node.js/Express)
-exports.getSubscriptions =  async (req, res) => {
+const Subscription = require('../models/Subscription'); 
+
+exports.getSubscriptions = async (req, res) => {
   try {
-      const subscriptions = await Subscription.find(); // Fetch all subscriptions from the database
-      res.status(200).json(subscriptions);
+    const subscriptions = await Subscription.find(); 
+    console.log(subscriptions); 
+    res.status(200).json(subscriptions);
   } catch (error) {
-      res.status(500).json({ error: 'Failed to fetch subscriptions' });
+    console.error(error); 
+    res.status(500).json({ error: 'Failed to fetch subscriptions' });
   }
 };
+
 
   
   exports.purchaseSubscription = async (req, res) => {
@@ -15,6 +19,7 @@ exports.getSubscriptions =  async (req, res) => {
       if (!subscription) {
         return res.status(404).json({ error: "Subscription not found" });
       }
+      console.log(req.params.id)
       res.status(200).json(subscription);
     } catch (error) {
       res.status(500).json({ error: "Failed to fetch subscription details" });

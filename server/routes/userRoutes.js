@@ -8,7 +8,7 @@ const router = express.Router();
 // router.use(authenticate);
 
 router.get('/subscriptions', userController.getSubscriptions);
-router.get('/subscriptions/:id', authorize(['user']), userController.purchaseSubscription);
+router.get('/subscriptions/:id', userController.purchaseSubscription);
 router.post('/chat', authorize(['user']), userController.startChat);
 
 module.exports = router;

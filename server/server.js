@@ -5,19 +5,20 @@ const config = require("./config");
 
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
-// const vendorRoutes = require("./routes/vendorRoutes");
+const vendorRoutes = require("./routes/vendorRoutes");
 // const adminRoutes = require("./routes/adminRoutes");
-
+const paymentRoutes = require("./routes/paymentRoutes");
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/user", userRoutes);
-// app.use("/vendor", vendorRoutes);
+app.use("/vendor", vendorRoutes);
 // app.use("/admin", adminRoutes);
+app.use("/payment", paymentRoutes);
+
 
 mongoose.connect(config.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("Connected to MongoDB"))
